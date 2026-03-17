@@ -8,8 +8,8 @@
         </svg>
       </div>
       <div class="logo-text">
-        <span class="logo-name">Finans</span>
-        <span class="logo-sub">Gider Takip</span>
+        <span class="logo-name">Followart</span>
+        <span class="logo-sub">Expense Tracker</span>
       </div>
     </div>
 
