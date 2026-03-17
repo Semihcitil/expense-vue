@@ -213,7 +213,7 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-.dashboard { display: flex; flex-direction: column; gap: 24px; }
+.dashboard { display: flex; flex-direction: column; gap: 24px; padding-bottom: 40px; }
 
 .page-header {
   display: flex; justify-content: space-between; align-items: center;
@@ -259,6 +259,7 @@ onMounted(async () => {
   background: var(--bg-elevated); border: 1px solid var(--border);
   border-radius: var(--r-lg); padding: 24px;
   animation: fadeUp .4s ease .1s both;
+  min-width: 0; /* İçeriğin taşmasını önler */
 }
 
 .chart-header {
@@ -268,8 +269,9 @@ onMounted(async () => {
 .chart-title { font-size: 16px; font-weight: 700; letter-spacing: -.2px; }
 .chart-sub   { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
 .chart-total { font-size: 20px; font-weight: 800; font-family: var(--mono); color: var(--accent-light); }
-.chart-area  { height: 200px; }
+.chart-area  { height: 200px; width: 100%; position: relative; }
 
+/* En Çok Harcama Kartı Detayları */
 .top-category { display: flex; flex-direction: column; gap: 20px; margin-top: 8px; }
 .top-cat-name { display: flex; align-items: center; gap: 14px; }
 .top-cat-icon { font-size: 40px; }
@@ -311,8 +313,8 @@ onMounted(async () => {
 }
 .transaction-row:last-child { border-bottom: none; }
 .transaction-row:hover { background: var(--bg-hover); }
-.transaction-skeleton { display: flex; align-items: center; gap: 16px; padding: 14px 24px; }
 
+/* Transaction Details */
 .tx-icon {
   width: 42px; height: 42px; border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
@@ -320,15 +322,27 @@ onMounted(async () => {
 }
 .tx-brand-logo { width: 34px; height: 34px; object-fit: contain; }
 .tx-body { flex: 1; min-width: 0; }
-.tx-title { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+.tx-title { font-size: 14px; font-weight: 600; margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .tx-meta  { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-muted); }
-.tx-dot   { opacity: .4; }
 .tx-amount { font-size: 15px; font-weight: 700; font-family: var(--mono); color: var(--red); flex-shrink: 0; }
 
-.empty-state {
-  display: flex; flex-direction: column; align-items: center;
-  gap: 12px; padding: 48px; color: var(--text-muted);
+/* ── RESPONSIVE DÜZENLEMELERİ ── */
+@media (max-width: 1024px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .charts-row { grid-template-columns: 1fr; }
 }
-.empty-icon { font-size: 40px; }
-.empty-text { font-size: 14px; }
+
+@media (max-width: 768px) {
+  .page-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .page-title { font-size: 24px; }
+  
+  .stats-grid { grid-template-columns: 1fr; }
+  
+  .chart-card { padding: 16px; }
+  .chart-header { flex-direction: column; gap: 8px; }
+  .chart-total { font-size: 18px; }
+
+  .transaction-row { padding: 12px 16px; }
+  .tx-amount { font-size: 14px; }
+}
 </style>
