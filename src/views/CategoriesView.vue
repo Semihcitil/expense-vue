@@ -66,7 +66,7 @@
       </AppModal>
 
       <!-- Delete Modal -->
-      <AppModal v-model="deleteModal" title="Kategoriyi Sil" :width="400}>
+      <AppModal v-model="deleteModal" title="Kategoriyi Sil" :width="400">
         <div class="delete-body">
           <div class="delete-icon">{{ deleteTarget?.icon }}</div>
           <p class="delete-text">
